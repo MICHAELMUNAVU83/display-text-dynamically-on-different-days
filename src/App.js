@@ -1,23 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const date = new Date();
+  const weekday = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  const [currentDay, setCurrentDay] = useState("");
+  useEffect(() => {
+    setCurrentDay(weekday[date.getDay()]);
+  }, [currentDay]);
+  const messages = [
+    {
+      text: "It is Sunday morning",
+      day: "Sunday",
+    },
+    {
+      text: "It is Monday morning",
+      day: "Monday",
+    },
+    {
+      text: "It is Tuesday morning",
+      day: "Tuesday",
+    },
+    {
+      text: "It is Wednesday morning",
+      day: "Wednesday",
+    },
+    {
+      text: "It is Thursday morning",
+      day: "Thursday",
+    },
+    {
+      text: "It is Friday morning",
+      day: "Friday",
+    },
+    {
+      text: "It is Saturday morning",
+      day: "Saturday",
+    },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {messages.map(
+        (message) =>
+          currentDay === message.day && (
+            <div>
+              <h1>{message.text}</h1>
+              <h2>{message.day}</h2>
+            </div>
+          )
+      )}
     </div>
   );
 }
